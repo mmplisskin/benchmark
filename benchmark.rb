@@ -49,11 +49,19 @@ Benchmark.bmbm do |x|
      }
 
 
-     x.report("range.to_i"){
-       (start_time.to_i..end_time.to_i).step(1800) do |min|
-         min = Time.at(min)
-         time_array.push(min)
-       end
+     x.report("range.to_i step do"){
+     (start_time.to_i..end_time.to_i).step(1800) do |min|
+       min = Time.at(min)
+       time_array.push(min)
+     end
+     }
+
+
+     x.report("range.to_i step do shovel"){
+     (start_time.to_i..end_time.to_i).step(1800) do |min|
+       min = Time.at(min)
+       time_array << min
+     end
      }
 
      x.report("Enumerator"){
